@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+.material-icons.md-30 { font-size: 30px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+.material-icons{
+    vertical-align: middle;
+    display: inline;
+}
+.container {
+    height: 100vh;
+    font-family: 'Noto Sans', sans-serif;
+    background-color: var(--offwhite);
+    width: 1000px;
+    margin: auto;
+    border: 5px solid var(--medgray);
+    border-radius: 20px;
+ }
