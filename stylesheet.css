@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+ @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 .container {
     display: grid;
     grid-template-columns: 45px 1fr 45px;
     grid-template-rows: 45px 1fr 45px;
-    /* height: 100vh; */
+   
     font-family: 'Noto Sans', sans-serif;
     background-color: var(--offwhite);
     margin: auto;
@@ -48,15 +49,14 @@
     align-items: center;
     justify-content: center;
 }
-.image{
+img{
     flex: 0 0 content;
     width: 100%;
     height: auto;
-    display: none;
+    display: none; 
 }
-.image.active{
+img.active{
     display:block;
-    animation: fadeImg 0.8s;
 }
 .indicators{
     grid-column: 2;
@@ -78,4 +78,4 @@
 }
 .indicators li:hover{
     background-color: grey;
-}
+} 
