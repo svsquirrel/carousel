@@ -17,6 +17,12 @@
     flex-wrap: nowrap;
     margin:auto;
 }
+.content.material-icons{
+    vertical-align: middle;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
 .arrow {
     height: 20px;
     width: 20px;
@@ -48,6 +54,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.slidediv {
+    display:none;
+}
+.slidediv.active{
+    display:block;
 }
 img{
     flex: 0 0 content;

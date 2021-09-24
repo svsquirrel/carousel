@@ -14,33 +14,36 @@ function renderContent() {
     const ulist = document.querySelector('.indicators');
 
     for (let i = 0; i < ImageData.length; i++) {
+        const slideDiv = document.createElement('div');
+            slideDiv.classList.add('slidediv');
+            slideDiv.dataset.id = i;
         const imageDisplay = document.createElement('img');
         imageDisplay.src = ImageData[i].imgsrc;
         imageDisplay.setAttribute('alt', ImageData[i].alttext);
         imageDisplay.dataset.id = i;
+        slideDiv.appendChild(imageDisplay);
        
         const indicatorItem = document.createElement('li');
         indicatorItem.dataset.id = i;
         indicatorItem.addEventListener('click', () => {
-                showSelectedImage(i);});
+                showSlides(i);});
 
-        content.appendChild(imageDisplay);
+        content.appendChild(slideDiv);
         ulist.appendChild(indicatorItem);
     }
     showSlides(0);
 }
-   
-function showSelectedImage(n) {
-    showSlides(n);
- }
-
+//have a timer which changes image every 4 seconds
+//hidden pause button displayed on mouseover that user can click to stop timer
+//after clicked its hidden. if hovered again, show the play icon
+//each time will change the dataset from play: on to play: off;
 const nextItem = document.querySelector('.right');
-nextItem.addEventListener('click', () => {
+    nextItem.addEventListener('click', () => {
          moveSlide(x = 1 );
     });
 
 const previousItem = document.querySelector('.left');
-previousItem.addEventListener('click', () => {
+    previousItem.addEventListener('click', () => {
         moveSlide(x =-1);
     });
 
@@ -49,7 +52,7 @@ function moveSlide(x){
     let id = parseInt(document.querySelector('.active').dataset.id);
 
     n = id + x;
-    console.log(n + 'start')
+   
     if (n == count){
         n = 0;
     } else if (n < 0 ){
@@ -58,10 +61,14 @@ function moveSlide(x){
         n;
     }
     showSlides(n)
-    
+ 
 }
 
 function showSlides(n) {
+    const divs = document.querySelectorAll('.slidediv');
+    divs.forEach(div => {
+        div.classList.remove('active')
+    })
     const items = document.querySelectorAll('img');
     items.forEach(item => {
         item.classList.remove('active')
@@ -70,7 +77,7 @@ function showSlides(n) {
     indicators.forEach(li => {
         li.classList.remove('active');
     })
-
+    divs[n].classList.add('active');
     items[n].classList.add('active');
     indicators[n].classList.add('active');
 }
