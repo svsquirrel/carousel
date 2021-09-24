@@ -1,3 +1,4 @@
+
  window.onload = renderContent;
 
 const ImageData = [
@@ -17,23 +18,32 @@ function renderContent() {
         const slideDiv = document.createElement('div');
             slideDiv.classList.add('slidediv');
             slideDiv.dataset.id = i;
+        
+        const playbtn = document.createElement('button');
+            playbtn.classList.add('pause');
+            playbtn.innerHTML = 'pause';
+            playbtn.style.display = 'none';
+
         const imageDisplay = document.createElement('img');
-        imageDisplay.src = ImageData[i].imgsrc;
-        imageDisplay.setAttribute('alt', ImageData[i].alttext);
-        imageDisplay.dataset.id = i;
-        slideDiv.appendChild(imageDisplay);
+            imageDisplay.src = ImageData[i].imgsrc;
+            imageDisplay.setAttribute('alt', ImageData[i].alttext);
+            imageDisplay.dataset.id = i;
+
+            slideDiv.appendChild(imageDisplay);
+            slideDiv.appendChild(playbtn);
        
         const indicatorItem = document.createElement('li');
-        indicatorItem.dataset.id = i;
-        indicatorItem.addEventListener('click', () => {
-                showSlides(i);});
+            indicatorItem.dataset.id = i;
+            indicatorItem.addEventListener('click', () => {
+                    showSlides(i);});
 
         content.appendChild(slideDiv);
         ulist.appendChild(indicatorItem);
     }
     showSlides(0);
 }
-//have a timer which changes image every 4 seconds
+let timer;
+
 //hidden pause button displayed on mouseover that user can click to stop timer
 //after clicked its hidden. if hovered again, show the play icon
 //each time will change the dataset from play: on to play: off;
@@ -48,6 +58,7 @@ const previousItem = document.querySelector('.left');
     });
 
 function moveSlide(x){
+    
     count = ImageData.length;
     let id = parseInt(document.querySelector('.active').dataset.id);
 
@@ -61,10 +72,10 @@ function moveSlide(x){
         n;
     }
     showSlides(n)
- 
 }
 
 function showSlides(n) {
+    
     const divs = document.querySelectorAll('.slidediv');
     divs.forEach(div => {
         div.classList.remove('active')
@@ -80,6 +91,9 @@ function showSlides(n) {
     divs[n].classList.add('active');
     items[n].classList.add('active');
     indicators[n].classList.add('active');
+
+    clearTimeout(timer);
+    timer = setTimeout(() => moveSlide(1),5000);
 }
 
 document.addEventListener('keydown', keyPress);
