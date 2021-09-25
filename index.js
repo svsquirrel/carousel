@@ -4,10 +4,9 @@
 const ImageData = [
     { imgsrc: "images/rainbow.jpg", alttext: "seaside rainbow",              caption: 'Rainbow over Fort Lauderdale' },
     { imgsrc: "images/ocean.jpg",   alttext: "rough ocean",                  caption: 'Sailing the Gulf Stream' },
-    { imgsrc: "images/greysky.jpg", alttext: "big rock in Alaska",           caption: 'I forget this rocks name' },
-    { imgsrc: "images/rock.jpg",    alttext: "seagull by sea",               caption: 'A seagull riding out the storm Navarre, Florida' },
+    { imgsrc: "images/greysky.jpg", alttext: "big rock in Alaska",           caption: 'A seagull riding out the storm Navarre, Florida'  },
+    { imgsrc: "images/rock.jpg",    alttext: "seagull by sea",               caption: 'I forget this rocks name'},
     { imgsrc: "images/sharks.jpg",  alttext: "huge aquarium with sharks",    caption: 'A third grade class visits Tampa Aquarium' },
-    { imgsrc: "images/monarch.jpg", alttext: "monarch on a flower",          caption: 'A monarch tastes bougainvilla' },
     { imgsrc: "images/river.jpg",   alttext: "sunshine on the Yellow River", caption: 'An inlet beckons on the Yellow River' }
 ]
 function renderContent() {
@@ -19,18 +18,17 @@ function renderContent() {
             slideDiv.classList.add('slidediv');
             slideDiv.dataset.id = i;
         
-        const playbtn = document.createElement('button');
-            playbtn.classList.add('pause');
-            playbtn.innerHTML = 'pause';
-            playbtn.style.display = 'none';
-
+        const caption = document.createElement('p');
+            caption.classList.add('caption');
+            caption.textContent = ImageData[i].caption;
+            
         const imageDisplay = document.createElement('img');
             imageDisplay.src = ImageData[i].imgsrc;
             imageDisplay.setAttribute('alt', ImageData[i].alttext);
             imageDisplay.dataset.id = i;
 
             slideDiv.appendChild(imageDisplay);
-            slideDiv.appendChild(playbtn);
+            slideDiv.appendChild(caption);
        
         const indicatorItem = document.createElement('li');
             indicatorItem.dataset.id = i;
@@ -44,9 +42,6 @@ function renderContent() {
 }
 let timer;
 
-//hidden pause button displayed on mouseover that user can click to stop timer
-//after clicked its hidden. if hovered again, show the play icon
-//each time will change the dataset from play: on to play: off;
 const nextItem = document.querySelector('.right');
     nextItem.addEventListener('click', () => {
          moveSlide(x = 1 );
@@ -54,7 +49,7 @@ const nextItem = document.querySelector('.right');
 
 const previousItem = document.querySelector('.left');
     previousItem.addEventListener('click', () => {
-        moveSlide(x =-1);
+        moveSlide(x = -1);
     });
 
 function moveSlide(x){
@@ -93,7 +88,7 @@ function showSlides(n) {
     indicators[n].classList.add('active');
 
     clearTimeout(timer);
-    timer = setTimeout(() => moveSlide(1),5000);
+   // timer = setTimeout(() => moveSlide(1),5000);
 }
 
 document.addEventListener('keydown', keyPress);

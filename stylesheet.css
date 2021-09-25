@@ -60,15 +60,18 @@
 }
 .slidediv.active{
     display:block;
+    max-width: 1030px;
+    width: 100%;
 }
 img{
-    flex: 0 0 content;
-    width: 100%;
-    height: auto;
     display: none; 
 }
 img.active{
+    flex: 0 0 content;
     display:block;
+    max-width: 864px;
+    width: 100%;
+    height: auto;
 }
 
 .indicators{
